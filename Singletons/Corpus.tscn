@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Singletons/Corpus.gd" type="Script" id=1]
+
+[node name="Corpus" type="Node"]
+script = ExtResource( 1 )

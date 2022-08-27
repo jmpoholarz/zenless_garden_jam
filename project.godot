@@ -1,0 +1,62 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "InventoryIcon",
+"class": "InventoryCrop",
+"language": "GDScript",
+"path": "res://UIElements/InventoryCrop.gd"
+}, {
+"base": "Control",
+"class": "InventoryIcon",
+"language": "GDScript",
+"path": "res://UIElements/InventoryItem.gd"
+}, {
+"base": "InventoryIcon",
+"class": "InventoryTool",
+"language": "GDScript",
+"path": "res://UIElements/InventoryTool.gd"
+} ]
+_global_script_class_icons={
+"InventoryCrop": "",
+"InventoryIcon": "",
+"InventoryTool": ""
+}
+
+[application]
+
+config/name="Zenless Garden"
+config/description="Kenney Jam 2022 Entry by CanisBorealis"
+run/main_scene="res://GameWorld.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+EventBus="*res://Singletons/EventBus.tscn"
+Corpus="*res://Singletons/Corpus.tscn"
+GameState="*res://Singletons/GameState.gd"
+Jukebox="*res://Singletons/Jukebox.tscn"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UsedAssets/ui_icons/genericItem_color_022.png" type="Texture" id=1]
+[ext_resource path="res://UIElements/InventoryItem.gd" type="Script" id=2]
+[ext_resource path="res://UIElements/ObjectLabel.tscn" type="PackedScene" id=3]
+
+[node name="InventoryIcon" type="Control"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+button_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="ObjectLabel" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0

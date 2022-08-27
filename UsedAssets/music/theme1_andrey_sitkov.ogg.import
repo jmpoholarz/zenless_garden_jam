@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/theme1_andrey_sitkov.ogg-177133ba2efe2c87979d3dcc0a4f077a.oggstr"
+
+[deps]
+
+source_file="res://UsedAssets/music/theme1_andrey_sitkov.ogg"
+dest_files=[ "res://.import/theme1_andrey_sitkov.ogg-177133ba2efe2c87979d3dcc0a4f077a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

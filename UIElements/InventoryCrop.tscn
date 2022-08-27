@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UIElements/InventoryItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UIElements/InventoryCrop.gd" type="Script" id=2]
+[ext_resource path="res://UsedAssets/ui_icons/crop_carrot.png" type="Texture" id=3]
+
+[sub_resource type="ButtonGroup" id=1]
+resource_name = "GameButtons"
+
+[node name="InventoryCrop" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+crop_id = -1
+
+[node name="Button" parent="." index="0"]
+group = SubResource( 1 )
+
+[node name="TextureRect" parent="Button" index="0"]
+texture = ExtResource( 3 )
