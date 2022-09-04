@@ -7,6 +7,7 @@ var pumpkin_counter: PackedScene = preload("res://UIElements/CustomerPanel/Custo
 
 onready var counter_container: HBoxContainer = $MarginContainer/VBoxContainer/CounterContainer
 onready var patience_bar: ProgressBar = $MarginContainer/VBoxContainer/HBoxContainer2/PatienceBar
+onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 var crops: Dictionary = {}
 var crop_counters: Dictionary = {}
@@ -33,6 +34,11 @@ func grow_impatient() -> void:
 	if patience_bar.value <= 0.0:
 		EventBus.emit_signal("customer_timed_out", self)
 	patience_bar.value -= 1.0
+	if patience_bar.value < 15.0:
+		anim_player.play("blink_customer_bar", -1, 2.0)
+	elif patience_bar.value < 35.0:
+		anim_player.play("blink_customer_bar")
+	
 
 func get_patience() -> float:
 	return patience_bar.value

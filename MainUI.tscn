@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UIElements/WordEntry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UIElements/InventoryTool.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UIElements/InventoryCrop.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UsedAssets/new_theme.tres" type="Theme" id=4]
+[ext_resource path="res://UsedAssets/blue_theme.tres" type="Theme" id=4]
 [ext_resource path="res://UIElements/ActiveToolIcon.gd" type="Script" id=5]
 [ext_resource path="res://UIElements/GameOverPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UIElements/CustomerWindow.gd" type="Script" id=7]
 [ext_resource path="res://MainUI.gd" type="Script" id=8]
+[ext_resource path="res://UIElements/PausePanel.tscn" type="PackedScene" id=9]
 
 [node name="MainUI" type="Control"]
 pause_mode = 1
@@ -36,20 +37,19 @@ margin_bottom = 652.0
 size_flags_vertical = 3
 
 [node name="SeedPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 128.0
-margin_bottom = 128.0
 size_flags_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SeedPanel"]
-margin_right = 128.0
-margin_bottom = 128.0
 
 [node name="InventoryCrop" parent="MarginContainer/VBoxContainer/HBoxContainer/SeedPanel/VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 mouse_filter = 2
 crop_id = 1
 
 [node name="InventoryCrop2" parent="MarginContainer/VBoxContainer/HBoxContainer/SeedPanel/VBoxContainer" instance=ExtResource( 3 )]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 132.0
 margin_bottom = 260.0
 mouse_filter = 2
@@ -57,14 +57,15 @@ crop_id = 2
 
 [node name="InventoryCrop3" parent="MarginContainer/VBoxContainer/HBoxContainer/SeedPanel/VBoxContainer" instance=ExtResource( 3 )]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 132.0
 margin_bottom = 260.0
 mouse_filter = 2
 crop_id = 3
 
 [node name="ToolPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 696.0
-margin_right = 696.0
+margin_left = 504.0
+margin_right = 504.0
 size_flags_horizontal = 6
 size_flags_vertical = 0
 
@@ -73,10 +74,12 @@ size_flags_horizontal = 5
 
 [node name="InventoryTool" parent="MarginContainer/VBoxContainer/HBoxContainer/ToolPanel/HBoxContainer" instance=ExtResource( 2 )]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 tool_id = 1
 
 [node name="InventoryTool2" parent="MarginContainer/VBoxContainer/HBoxContainer/ToolPanel/HBoxContainer" instance=ExtResource( 2 )]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 tool_id = 2
 
 [node name="InventoryTool3" parent="MarginContainer/VBoxContainer/HBoxContainer/ToolPanel/HBoxContainer" instance=ExtResource( 2 )]
@@ -85,16 +88,19 @@ tool_id = 3
 
 [node name="InventoryTool4" parent="MarginContainer/VBoxContainer/HBoxContainer/ToolPanel/HBoxContainer" instance=ExtResource( 2 )]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 tool_id = 4
 
 [node name="CustomerWindow" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1264.0
+margin_left = 1008.0
 margin_right = 1264.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 script = ExtResource( 7 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/CustomerWindow"]
+margin_right = 256.0
+rect_min_size = Vector2( 256, 0 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_left = 478.0
@@ -130,6 +136,8 @@ margin_bottom = 12.0
 text = "Zenless Garden"
 
 [node name="TutSeed1" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 164.0
 margin_top = 64.0
 margin_right = 161.0
@@ -139,6 +147,7 @@ to select the tool."
 
 [node name="TutSeed2" type="Label" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -152,16 +161,48 @@ to apply to the soil."
 
 [node name="TutSeed3" type="Label" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -525.0
+margin_left = -550.0
 margin_top = 150.0
+margin_right = -280.0
+margin_bottom = 80.0
+text = "Complete customer orders
+before time runs out!"
+align = 2
+
+[node name="TutSeed4" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 140.0
 margin_bottom = 51.0
-text = "Pay attention to
-incoming plant requests!"
+text = "Use your tools to keep
+your plants healthy."
+align = 2
+
+[node name="TutSeed5" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 140.0
+margin_bottom = 51.0
+text = "Use your tools to keep
+your plants healthy."
+align = 2
 
 [node name="GameOverPanel" parent="." instance=ExtResource( 6 )]
-pause_mode = 2
+visible = false
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+
+[node name="PausePanel" parent="." instance=ExtResource( 9 )]
 visible = false
 margin_left = -320.0
 margin_top = -180.0
@@ -169,3 +210,29 @@ margin_right = 320.0
 margin_bottom = 180.0
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -8.0
+margin_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TotalCustomerLabel" type="Label" parent="PanelContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 4.0
+margin_right = 204.0
+margin_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "xxx customers served"
+align = 2

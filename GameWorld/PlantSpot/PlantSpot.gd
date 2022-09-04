@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		do_plant_tick()
 
 func _on_PlantGui_text_matched() -> void:
-	print("text matched " + str(GameState.get_active_tool()))
+	#print("text matched " + str(GameState.get_active_tool()))
 	if GameState.get_active_tool() == GameState.TOOL_WATERING_CAN:
 		water_plant()
 	elif GameState.get_active_tool() == GameState.TOOL_WEEDING_FORK:
@@ -129,6 +129,7 @@ func plant_seed(seed_id: int) -> void:
 	plant_model.set_surface_material(0, null)
 	plant_id = seed_id
 	is_growing = true
+	plant_gui.update_textbox_opacity(GameState.get_active_tool())
 
 func set_plant_needs_water() -> void:
 	active_plant_request = PLANT_REQUEST_WATER
@@ -136,11 +137,16 @@ func set_plant_needs_water() -> void:
 	if GameState.flag_first_watering == false:
 		GameState.flag_first_watering = true
 		EventBus.emit_signal("flag_first_watering")
+	if GameState.flag_tool_used == false:
+		EventBus.emit_signal("tutorial_tool_needed")
 
 func water_plant() -> void:
 	if active_plant_request == PLANT_REQUEST_WATER:
 		active_plant_request = PLANT_REQUEST_NONE
 		plant_gui.set_active_quest(PLANT_REQUEST_NONE)
+		if GameState.flag_tool_used == false:
+			GameState.flag_tool_used = true
+			EventBus.emit_signal("flag_first_tool_used")
 
 func set_weeds() -> void:
 	weed_model.visible = true
@@ -149,6 +155,8 @@ func set_weeds() -> void:
 	if GameState.flag_first_weeds == false:
 		GameState.flag_first_weeds = true
 		EventBus.emit_signal("flag_first_weeds")
+	if GameState.flag_tool_used == false:
+		EventBus.emit_signal("tutorial_tool_needed")
 
 
 func deweed_plant() -> void:
@@ -156,11 +164,16 @@ func deweed_plant() -> void:
 		weed_model.visible = false
 		active_plant_request = PLANT_REQUEST_NONE
 		plant_gui.set_active_quest(PLANT_REQUEST_NONE)
+		if GameState.flag_tool_used == false:
+			GameState.flag_tool_used = true
+			EventBus.emit_signal("flag_first_tool_used")
 
 func set_ready_to_harvest() -> void:
 	full_grown = true
 	active_plant_request = PLANT_REQUEST_SHOVEL
 	plant_gui.set_active_quest(PLANT_REQUEST_SHOVEL)
+	plant_gui.set_gui_theme(plant_gui.THEME_GREEN)
+	#TODO: change plant gui color theme to successful plant
 	if GameState.flag_first_shovel == false:
 		GameState.flag_first_shovel = true
 		EventBus.emit_signal("flag_first_shovel")
@@ -172,6 +185,7 @@ func harvest_plant() -> void:
 	set_plant_size(0.0)
 	active_plant_request = PLANT_REQUEST_NONE
 	plant_gui.set_active_quest(PLANT_REQUEST_NONE)
+	plant_gui.set_gui_theme(plant_gui.THEME_BLUE)
 	weed_model.visible = false
 	EventBus.emit_signal("plant_harvested", plant_id, 
 			get_viewport().get_camera().unproject_position(global_translation))
@@ -181,6 +195,8 @@ func kill_plant() -> void:
 	plant_model.set_surface_material(0, dead_material)
 	active_plant_request = PLANT_REQUEST_SHOVEL
 	plant_gui.set_active_quest(PLANT_REQUEST_SHOVEL)
+	plant_gui.set_gui_theme(plant_gui.THEME_RED)
+	#TODO: change plant gui color theme to dead plant
 	is_growing = false
 	if GameState.flag_first_shovel == false:
 		GameState.flag_first_shovel = true
@@ -194,4 +210,5 @@ func dig_up_plant() -> void:
 	plant_id = -1
 	active_plant_request = PLANT_REQUEST_NONE
 	plant_gui.set_active_quest(PLANT_REQUEST_NONE)
+	plant_gui.set_gui_theme(plant_gui.THEME_BLUE)
 	weed_model.visible = false

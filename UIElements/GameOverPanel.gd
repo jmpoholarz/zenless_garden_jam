@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_EventBus_customer_timed_out(customer: Node) -> void:
 	get_tree().paused = true
-	print("Customer timed out!")
+	#print("Customer timed out!")
 	GameState._in_menu = true
 	customer.get_parent().remove_child(customer)
 	customer_holder.add_child(customer)

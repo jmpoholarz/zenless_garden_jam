@@ -36,6 +36,8 @@ func _on_crop_id_changed(value) -> void:
 		CROP_PUMPKIN:
 			texture_rect.texture = pumpkin_icon
 
+
 func _on_ObjectLabel_text_matched() -> void:
 	._on_ObjectLabel_text_matched()
 	GameState.set_active_tool(GameState.CLASS_SEED + crop_id)
+	theme = green_theme

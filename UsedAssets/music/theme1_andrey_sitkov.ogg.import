@@ -11,5 +11,5 @@ dest_files=[ "res://.import/theme1_andrey_sitkov.ogg-177133ba2efe2c87979d3dcc0a4
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -21,4 +21,5 @@ func play_next_song() -> void:
 
 
 func _on_Jukebox_finished() -> void:
+	print("Jukebox song ended.")
 	play_next_song()

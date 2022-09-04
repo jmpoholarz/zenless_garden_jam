@@ -17,6 +17,8 @@ const SEED_PUMPKIN = 103
 var flag_used_seeds = false
 var flag_planted_seeds = false
 var flag_served_customer = false
+var flag_tool_used = false
+
 var flag_first_turnip = false
 var flag_first_pumpkin = false
 var flag_first_watering = false
@@ -38,6 +40,8 @@ func reset_game_state() -> void:
 	flag_used_seeds = false
 	flag_planted_seeds = false
 	flag_served_customer = false
+	flag_tool_used = false
+	
 	flag_first_turnip = false
 	flag_first_pumpkin = false
 	flag_first_watering = false
@@ -63,7 +67,7 @@ func increment_customers_served() -> void:
 	_customers_served += 1
 	if flag_served_customer == false:
 		flag_served_customer = true
-		EventBus.emit_signal("tutorial_customer_served")
+	EventBus.emit_signal("tutorial_customer_served", _customers_served)
 
 func get_customers_served() -> int:
 	return _customers_served

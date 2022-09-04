@@ -2,6 +2,14 @@
 class_name InventoryIcon
 extends Control
 
+const THEME_BLUE = 0
+const THEME_GREEN = 1
+const THEME_RED = 2
+
+var blue_theme: Theme = preload("res://UsedAssets/blue_theme.tres")
+var green_theme: Theme = preload("res://UsedAssets/green_theme.tres")
+var red_theme: Theme = preload("res://UsedAssets/red_theme.tres")
+
 var button_group: ButtonGroup = preload("res://UIElements/ButtonGroup.tres")
 
 onready var button: Button = $Button
@@ -27,3 +35,4 @@ func _on_ObjectLabel_text_matched() -> void:
 
 func _on_Button_button_up() -> void:
 	object_label.deselect()
+	theme = blue_theme

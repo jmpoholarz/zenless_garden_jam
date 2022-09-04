@@ -42,3 +42,4 @@ func _on_tool_id_changed(value) -> void:
 func _on_ObjectLabel_text_matched() -> void:
 	._on_ObjectLabel_text_matched()
 	GameState.set_active_tool(GameState.CLASS_TOOL + tool_id)
+	theme = green_theme

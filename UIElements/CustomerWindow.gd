@@ -15,6 +15,8 @@ var time_since_last_tick: float = 10.0
 var tick_rate: float = 10.0
 var ticks_so_far: int = 0
 
+var _customers_started = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,10 +31,16 @@ func _process(delta: float) -> void:
 		generate_new_customer()
 
 
+func start_customers() -> void:
+	_customers_started = true
+
 func generate_new_customer() -> void:
+	if !_customers_started:
+		ticks_so_far -= 1
+		return
 	if vboxcontainer.get_child_count() >= MAX_CUSTOMERS:
 		return
-	var max_veggies = int(max(1.0, min(ticks_so_far / 2.0, 10.0)))
+	var max_veggies = int(max(1.0, min(ticks_so_far / 3.0, 6.0)))
 	
 	var veggies_chosen = randi() % max_veggies + 1
 	var veggies_so_far = 0
